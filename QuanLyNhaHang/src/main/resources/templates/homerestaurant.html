@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quan ly nha hang</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+<div id="wrapper">
+    <header class="header-wrapper clear-fix">
+        <div class="header-inner relative">
+            <div class="header__banner">
+                <a class="dp-block" href="">
+                    <img th:src="${vm.getLogoVM().getLogoUrl()}" th:alt="${vm.getLogoVM().getLogoAltText()}">
+                </a>
+            </div>
+            <div class="header__login">
+                <a href="">
+                        <span><i class="fa fa-user-plus" aria-hidden="true"></i>
+                        </span>
+                </a>
+            </div>
+            <div class="header__shopping">
+                <a href="">
+                        <span><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </span>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-xs-1 col-sm-1 header__search ">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Search</button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="nav-wrapper clear-fix">
+        <div class="nav-inner">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <span th:text="${vm.getLogoVM().getCompanyBrand()}"></span>
+                        </a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <th:block th:each="menuItem : ${vm.getListHrMenuItems()}">
+                                <li th:if="${menuItem.getChildren().size() == 0}"
+                                    th:class="${menuItem.isFlag()} ? 'active' : ''">
+                                    <a th:href="${menuItem.getLink()}">
+                                        <span th:text="${menuItem.getText()}"></span>
+                                    </a>
+                                </li>
+                                <li class="dropdown" th:unless="${menuItem.getChildren().size() == 0}">
+                                    <a th:href="${menuItem.getLink()}" class="dropdown-toggle" data-toggle="dropdown"
+                                       role="button"
+                                       aria-haspopup="true" aria-expanded="false">
+                                        <span th:text="${menuItem.getText()}"></span><span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li th:each="child : ${menuItem.getChildren()}">
+                                            <a th:href="${child.getLink()}">
+                                                <span th:text="${child.getText()}"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </th:block>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <div class="slider-wrapper">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div th:each="slider : ${vm.getListImages()}" class="item"
+                             th:classappend="${#strings.equals(slider.getAltText(), 'slider1')} ? active : ''">
+                            <div class="slider__image">
+                                <img th:src="${slider.getImageUrl()}" th:alt="${slider.getAltText()}"
+                                     class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                       data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                       data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="main-wrapper">
+        <div class="main-inner">
+            <div class="row">
+                <div class="main__left col-sm-6 col-md-3">
+                    <div class="row">
+                        <div class="sidebar">
+                            <h3 class="sidebar__title">Thực Đơn</h3>
+                            <div class="main__sidebar">
+                                <ul class="sidebar__ul">
+                                    <th:block th:each="menuItemA : ${vm.getListMenuItemsAside()}">
+                                        <li class="sidebar__li" th:if="${menuItemA.getChildren().size() == 0}">
+                                            <a th:href="${menuItemA.getLink()}" class="sidebar__link dp-block">
+                                                <span th:text="${menuItemA.getText()}"></span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar__li dp-block relative"
+                                            th:unless="${menuItemA.getChildren().size() == 0}">
+                                            <a th:href="${menuItemA.getLink()}" th:text="${menuItemA.getText()}"
+                                               class="sidebar__link dp-block"></a>
+                                            <ul class="sidebar__ul__lv2">
+                                                <li class="sidebar__li"
+                                                    th:each="child : ${menuItemA.getChildren()}">
+                                                    <a th:href="${child.getLink()}"
+                                                       th:text="${child.getText()}"
+                                                       class="sidebar__link dp-block"></a></li>
+                                            </ul>
+                                        </li>
+                                    </th:block>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="left__product">
+                            <h3 class="product__title">Món ăn đặc biệt</h3>
+                            <div class="product-item">
+                                <div class="row">
+                                    <div class="item__image col-md-6 col-sm-6 col-xs-6">
+                                        <a href="">
+                                            <img src="http://scontent.webpluscnd.net/photos-df/a-90/7001-1574613/cua-tuoi-song.png?atk=5793f0b6a5c88cc3d1155c33bec90409"
+                                                 class="img-responsive">
+                                        </a>
+                                    </div>
+                                    <div class="item__infor col-md-6 col-sm-6 col-xs-6">
+                                        <div class="item__title">
+                                            <span>Lẩu mắm</span>
+                                        </div>
+                                        <div class="item__price-sold">
+                                            <span>Giá bán: </span>
+                                            <span>150000đ</span>
+                                        </div>
+                                        <div class="item__price-sale">
+                                            <span>Giá KM: </span>
+                                            <span>150000đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main__right col-xs-12 col-sm-6 col-md-9">
+                    <a href="" class="list-products-title dp-block">CÁC MÓN LẨU</a>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-4 relative">
+                            <div class="product-item">
+                                <div class="item__image">
+                                    <a href="">
+                                        <img src="http://scontent.webpluscnd.net/photos-df/a-250/7001-1574567/lau-mam.png?atk=de57808217810bc1fc97eaacbaa4289f"
+                                             class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="item__desc">
+                                    <span>-25%</span>
+                                </div>
+                                <div class="item__title">
+                                    <span>Lẩu mắm</span>
+                                </div>
+                                <div class="item__price">
+                                    <span>150000đ</span>
+                                </div>
+                                <div class="item__action">
+                                    <button type="button" class="btn btn-success">Đặt Hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 relative">
+                            <div class="product-item">
+                                <div class="item__image">
+                                    <a href="">
+                                        <img src="http://scontent.webpluscnd.net/photos-df/a-250/7001-1574567/lau-mam.png?atk=de57808217810bc1fc97eaacbaa4289f"
+                                             class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="item__desc">
+                                    <span>-25%</span>
+                                </div>
+                                <div class="item__title">
+                                    <span>Lẩu mắm</span>
+                                </div>
+                                <div class="item__price">
+                                    <span>150000đ</span>
+                                </div>
+                                <div class="item__action">
+                                    <button type="button" class="btn btn-success">Đặt Hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 relative">
+                            <div class="product-item">
+                                <div class="item__image">
+                                    <a href="">
+                                        <img src="http://scontent.webpluscnd.net/photos-df/a-250/7001-1574567/lau-mam.png?atk=de57808217810bc1fc97eaacbaa4289f"
+                                             class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="item__desc">
+                                    <span>-25%</span>
+                                </div>
+                                <div class="item__title">
+                                    <span>Lẩu mắm</span>
+                                </div>
+                                <div class="item__price">
+                                    <span>150000đ</span>
+                                </div>
+                                <div class="item__action">
+                                    <button type="button" class="btn btn-success">Đặt Hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 relative">
+                            <div class="product-item">
+                                <div class="item__image">
+                                    <a href="">
+                                        <img src="http://scontent.webpluscnd.net/photos-df/a-250/7001-1574522/lau-bo-mylau-kim-chi-va-hai-san.png?atk=ba8e68e60972f29334da5146b79ed3d7"
+                                             class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="item__desc">
+                                    <span>-35%</span>
+                                </div>
+                                <div class="item__title">
+                                    <span>Lẩu mắm</span>
+                                </div>
+                                <div class="item__price">
+                                    <span>150000đ</span>
+                                </div>
+                                <div class="item__action">
+                                    <button type="button" class="btn btn-success">Đặt Hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>
