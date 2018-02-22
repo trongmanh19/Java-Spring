@@ -1,0 +1,202 @@
+@font-face {
+    font-family: 'Myriad-Pro';
+    src: url('../font/MyriadPro-Regular.otf') format('opentype');
+    /* Safari, Android, iOS */
+}
+
+@font-face {
+    font-family: 'Myriad-Bold';
+    src: url('../font/Myriad%20Pro%20Bold%20SemiExtended.ttf') format('truetype');
+}
+body {
+	font-family: Myriad-Pro;
+}
+
+#footer-mid .container-fluid {
+	padding-top: 30px;
+}
+
+#wrapper {
+	margin: 0 auto;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.clear-fix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.relative {
+	position: relative;
+}
+
+#header-top {
+	padding-top: 15px;
+	border-bottom: 1px solid #afa7a7;
+}
+
+#header-top .menu__inf,
+#footer-top .menu__social {
+	display: table;
+	width: 100%;
+}
+
+.menu__inf li {
+	display: table-cell;
+	list-style-type: none;
+	border-left: 1px solid #afa7a7;
+	text-align: center;
+	padding: 5px 0;
+}
+
+#header-top a {
+	text-decoration: none;
+	color: #3f3f3f;
+	font: 14px Myriad-Pro;
+	padding-left: 5px;
+}
+
+.menu__inf li:first-child {
+	border-left: none;
+}
+
+#header-top a:hover {
+	color: #f90000;
+}
+
+.footer__menu:first-child {
+	margin-top: 20px;
+}
+
+.footer__menu li {
+	list-style-type: none;
+	margin-top: 5px;
+}
+
+.footer__menu .menu__title {
+	padding-left: 40px;
+	font-family: Myriad-Bold;
+}
+
+.footer__menu a {
+	color: #000000;
+	font: 16px Myriad-Pro;
+}
+
+.footer__menu a:hover {
+	color: #eb1c23;
+}
+
+.footer__menu .social-icon {
+	background: url(../img/icons/img-general.png) no-repeat;
+    width: 32px;
+    height: 32px;
+}
+
+.menu__social li {
+	display: table-cell;
+}
+
+.menu__social .ins-icon {
+    background-position: -168px -209px;
+}
+
+.menu__social .ins-icon:hover {
+    background-position: -168px -243px;
+}
+
+.menu__social .fb-icon {
+    background-position: 0 -166px;
+}
+
+.menu__social .fb-icon:hover {
+    background-position: 0 -200px;
+}
+
+.menu__social .ytb-icon {
+    background-position: -136px -131px;
+}
+
+.menu__social .ytb-icon:hover {
+    background-position: -136px -165px;
+}
+
+.scrollTop {
+  position: fixed;
+  right: 5%;
+  bottom: 10px;
+  background-color: #BE3F48;
+  padding: 20px;
+  opacity: 0;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.scrollTop a {
+  font-size: 18px;
+  color: #fff;
+}
+
+.footer__certification a {
+	background: url(../img/icons/common-images.png) no-repeat;
+    background-position: 0 -246px;
+    width: 191px;
+    height: 72px;
+}
+
+.footer__payment .payment-icon {
+	width: 54px;
+    height: 40px;
+}
+
+.footer__payment .visa {
+	background: url(../img/icons/common-images.png) no-repeat 0 0;
+}
+
+.footer__payment .master-card {
+	background: url(../img/icons/common-images.png) no-repeat -60px 0;
+}
+
+.footer__payment .cash-on-delivery {
+	background: url(../img/icons/common-images.png) no-repeat -180px 0;
+}
+
+.footer__payment .smart-link {
+	background: url(../img/icons/common-images.png) no-repeat -240px 0;
+}
+
+.footer__payment .fast-post {
+	background: url(../img/icons/common-images.png) no-repeat 0 -60px;
+}
+
+.footer__payment .vt-post {
+	background: url(../img/icons/common-images.png) no-repeat -60px -60px;
+}
+
+.footer__app img {
+	max-width: 172px;
+}
+
+#footer-bottom {
+	padding: 20px;
+	background-color: #f1f2f2;
+}
+
+#footer-bottom .page__link {
+	background: url(../img/logo/sprite.png) no-repeat -220px -1px;
+	width: 78px;
+    height: 25px;
+}
+
+#footer-bottom .page__link:hover {
+	background: url(../img/logo/sprite.png) no-repeat -142px -1px;
+}
+
+#footer-bottom .copyright {
+	float: right;
+	padding: 20px;
+}
+
