@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset=" utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Home Canifa</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+<div id="wrapper" class="relative">
+    <header>
+        <div id="header-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="fee-top relative">
+                            <a href="">Miễn phí vẫn chuyển cho đơn hàng từ 499.000Đ</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <ul class="menu__inf">
+                            <li class="relative" th:each="menuItem: ${vm.getListMenuTopItems()}">
+                                <a class="inline-block" th:href="${menuItem.getLink()}">
+                                    <span th:text="${menuItem.getText()}"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="nav-sticker">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="https://canifa.s3.amazonaws.com/media/wysiwyg/info/logo.jpg" alt=""
+                             class="img-responsive brand__img">
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse mega-menu js-mega-menu" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <th:block th:each="menuItemMG : ${vm.getListHrMenuItems()}">
+                            <li th:if="${menuItemMG.getChildren().size() == 0}">
+                                <a th:href="${menuItemMG.getLink()}">
+                                    <span th:text="${menuItemMG.getText()}"></span>
+                                </a>
+                            </li>
+                            <li th:unless="${menuItemMG.getChildren().size() == 0}">
+                                <a th:href="${menuItemMG.getLink()}">
+                                    <span th:text="${menuItemMG.getText()}"></span>
+                                </a>
+                                <ul class="mega-menu__is">
+                                    <li class="mega-menu__item"><a class="link__upper" href="">DANH MỤC SẢN PHẨM</a>
+                                        <div>
+                                            <ul class="inline-block">
+                                                <li th:each="child0 : ${menuItemMG.getChildren().get(0).getChildren()}">
+                                                    <a th:href="${child0.getLink()}"
+                                                       th:text="${child0.getText()}"
+                                                    ></a></li>
+                                            </ul>
+                                            <ul class="inline-block">
+                                                <li th:each="child1 : ${menuItemMG.getChildren().get(1).getChildren()}">
+                                                    <a th:href="${child1.getLink()}"
+                                                       th:text="${child1.getText()}"
+                                                    ></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="mega-menu__item">
+                                        <div>
+                                            <ul>
+                                                <li th:each="child2 : ${menuItemMG.getChildren().get(2).getChildren()}">
+                                                    <a th:href="${child2.getLink()}"
+                                                       th:text="${child2.getText()}"
+                                                       th:class="${#strings.equals(child2.getDescClass(), 'link-upper')} ? link__upper : ''">
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="mega-menu__item"><a class="link__upper" href="">BỘ SƯU TẬP</a>
+                                        <div>
+                                            <ul>
+                                                <li th:each="child3 : ${menuItemMG.getChildren().get(3).getChildren()}">
+                                                    <a th:href="${child3.getLink()}"
+                                                       th:text="${child3.getText()}">
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </th:block>
+
+                    </ul>
+                    <div class="navbar-right relative js-navbar-right">
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                        </form>
+                        <div class="navbar-cart__icon">
+                            <a href="">
+                                    <span><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <footer>
+        <div id="footer-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="footer__menu">
+                            <ul class="menu__cont">
+                                <li><a href="">TÌM KIẾM CỬA HÀNG</a></li>
+                                <li><a href="">TUYỂN DỤNG</a></li>
+                                <li><a href="">BLOG - CHUYỂN ĐỘNG CANIFA</a></li>
+                                <li><a href="">KHẢO SÁT Ý KIẾN KHÁCH HÀNG</a></li>
+                                <li><a href="">ĐIỀU KHOẢN & ĐIỀU KIỆN GIAO DỊCH</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="footer__menu">
+                            <h3 class="menu__title">Thương hiệu</h3>
+                            <ul class="menu__brand">
+                                <li><a href="">Giới thiệu</a></li>
+                                <li><a href="">Blog</a></li>
+                                <li><a href="">Tuyển dụng</a></li>
+                                <li><a href="">Với cộng đồng</a></li>
+                                <li><a href="">Hệ thống cửa hàng</a></li>
+                                <li><a href="">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="footer__menu">
+                            <h3 class="menu__title">Hỗ trợ</h3>
+                            <ul class="menu__spp">
+                                <li><a href="">FAQs - Hỏi đáp</a></li>
+                                <li><a href="">Chính sách vận chuyển</a></li>
+                                <li><a href="">Hướng dẫn chọn kích cỡ</a></li>
+                                <li><a href="">Hướng dẫn thanh toán</a></li>
+                                <li><a href="">Kiểm tra đơn hàng</a></li>
+                                <li><a href="">Yêu cầu đổi trả</a></li>
+                                <li><a href="">Tra cứu điểm thẻ</a></li>
+                                <li><a href="">Chính sách KH thân thiết</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="footer__menu">
+                                    <h3 class="menu__title">Đăng ký nhận tin</h3>
+                                    <input type="email" placeholder="Enter email">
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="footer__menu">
+                                    <h3 class="menu__title">Kết nối</h3>
+                                    <ul class="menu__social">
+                                        <li><a class="social-icon fb-icon inline-block" href=""></a></li>
+                                        <li><a class="social-icon ins-icon inline-block" href=""></a></li>
+                                        <li><a class="social-icon ytb-icon inline-block" href=""></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer-mid">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="footer_cpn">
+                            <h3>Công ty cổ phần Canifa</h3>
+                            <p class="info">Địa chỉ trụ sở: Phòng 404 Tòa nhà GP Invest,</p>
+                            <p class="info">Nơi cấp: Sở Kế hoạch và đầu tư Hà Nội</p>
+                            <p class="info">170 La Thành, P. Ô Chợ Dừa, Q. Đống Đa, Hà Nội</p>
+                            <p class="info">Số ĐKKD: 0107574310, ngày cấp: 23/09/2016</p>
+                            <p class="info">Điện thoại: +8424 - 7303.0222</p>
+                            <p class="info">Fax: +8424 - 6277.6419</p>
+                            <p class="info">Email: info@canifa.com</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="footer__certification">
+                            <a class="inline-block" href="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="footer__payment">
+                            <ul>
+                                <li class="visa inline-block payment-icon"></li>
+                                <li class="master-card inline-block payment-icon"></li>
+                                <li class="cash-on-delivery inline-block payment-icon"></li>
+                                <li class="smart-link inline-block payment-icon"></li>
+                                <li class="fast-post inline-block payment-icon"></li>
+                                <li class="vt-post inline-block payment-icon"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="footer__app">
+                            <div class="col-sm-12">
+                                <div class="app__code-qr">
+                                    <img src="https://canifa.s3.amazonaws.com/media/wysiwyg/QR_app.png"
+                                         class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="app__store">
+                                    <a href="https://itunes.apple.com/vn/app/canifa/id1175895653?l=vi&mt=8">
+                                        <img src="https://canifa.s3.amazonaws.com/media/wysiwyg/appstore_btn.png"
+                                             alt="QR AppStore" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="app__ch-play">
+                                    <a href=" https://play.google.com/store/apps/details?id=com.app.canifa&hl=vi">
+                                        <img src="https://canifa.s3.amazonaws.com/media/wysiwyg/btn_ggstore.png"
+                                             alt="QR CH Play" class="img-responsive">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer-bottom">
+            <div class="home-page inline-block">
+                <a href="" class="inline-block page__link"></a>
+            </div>
+            <div class="copyright clear-fix">
+                <span>© 2018 CANIFA</span>
+            </div>
+        </div>
+    </footer>
+    <div id="stop" class="scrollTop">
+        <span><a href="">Top</a></span>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/scrollTop.js}"></script>
+<script type="text/javascript" th:src="@{/js/megamenu.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.sticky.js}"></script>
+<script>
+    $(document).ready(function () {
+        $("#nav-sticker").sticky({topSpacing: 0});
+    });
+</script>
+</body>
+
+</html>
