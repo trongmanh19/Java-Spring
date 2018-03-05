@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<th:block th:fragment="header">
+    <header>
+        <div id="header-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="fee-top relative">
+                            <a href="">Miễn phí vẫn chuyển cho đơn hàng từ 499.000Đ</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <ul class="menu__inf">
+                            <li class="relative" th:each="menuItem: ${vm.getListMenuTopItems()}">
+                                <a class="inline-block" th:href="${menuItem.getLink()}">
+                                    <span th:text="${menuItem.getText()}"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</th:block>
+</body>
+</html>

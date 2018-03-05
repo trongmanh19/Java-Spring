@@ -40,6 +40,10 @@ body {
     position: relative;
 }
 
+.img-responsive {
+    margin: 0 auto;
+}
+
 #header-top {
     padding-top: 15px;
     border-bottom: 1px solid #afa7a7;
@@ -223,6 +227,62 @@ body {
 
 .navbar-right .navbar-cart__icon a:hover {
     color: #04f715;
+}
+
+/*-----Product-----*/
+
+.product-item {
+    padding: 20px 0;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+    margin-top: 10px;
+}
+
+.product-item:hover {
+    border: 1px solid grey;
+}
+
+.item__title,
+.item__price, .item__action {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.item__title {
+    font-weight: bold;
+}
+
+.item__price,
+.item__price-sale {
+    color: #ee1212;
+    font-weight: bold !important;
+}
+
+.item__price-sold {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.list-products-title {
+    text-align: center;
+    font-weight: 36px;
+    padding: 10px 0;
+    color: #000;
+    font-size: bolder;
+}
+
+.item__desc {
+    background: #e5302d;
+    border-radius: 20px;
+    color: #ffffff;
+    height: 40px;
+    padding-top: 11px;
+    position: absolute;
+    right: 1%;
+    text-align: center;
+    text-shadow: 1px 1px 1px #333333;
+    width: 40px;
+    top: 55%;
 }
 
 /*FOOTER*/

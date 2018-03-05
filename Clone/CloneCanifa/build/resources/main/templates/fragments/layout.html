@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Canifa Page</title>
+</head>
+<body>
+<div id="wrapper" class="relative">
+    <th:block th:replace="fragments/header :: header"/>
+    <th:block th:replace="fragments/navbar :: navbar"/>
+    <div class="container-fluid">
+        <div class="wrapper-main">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <th:block layout:fragment="sidebar-menu">
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="main__product">
+                        <th:block layout:fragment="products-list">
+                        </th:block>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <th:block th:replace="fragments/footer :: footer"/>
+</body>
+</html>

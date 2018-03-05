@@ -80,7 +80,7 @@ public class HomeController {
 
         model.addAttribute("vm", vm);
 
-        return "home_canifa";
+        return "index";
     }
 
 }

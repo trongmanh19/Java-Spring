@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<th:block th:fragment="navbar">
+    <div id="nav-sticker">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="https://canifa.s3.amazonaws.com/media/wysiwyg/info/logo.jpg" alt=""
+                             class="img-responsive brand__img">
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse mega-menu js-mega-menu" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <th:block th:each="menuItemMG : ${vm.getListHrMenuItems()}">
+                            <li th:if="${menuItemMG.getChildren().size() == 0}">
+                                <a th:href="${menuItemMG.getLink()}">
+                                    <span th:text="${menuItemMG.getText()}"></span>
+                                </a>
+                            </li>
+                            <li th:unless="${menuItemMG.getChildren().size() == 0}">
+                                <a th:href="${menuItemMG.getLink()}">
+                                    <span th:text="${menuItemMG.getText()}"></span>
+                                </a>
+                                <ul class="mega-menu__is">
+                                    <li class="mega-menu__item"><a class="link__upper" href="">DANH MỤC SẢN PHẨM</a>
+                                        <div>
+                                            <ul class="inline-block">
+                                                <li th:each="child0 : ${menuItemMG.getChildren().get(0).getChildren()}">
+                                                    <a th:href="${child0.getLink()}"
+                                                       th:text="${child0.getText()}"
+                                                    ></a></li>
+                                            </ul>
+                                            <ul class="inline-block">
+                                                <li th:each="child1 : ${menuItemMG.getChildren().get(1).getChildren()}">
+                                                    <a th:href="${child1.getLink()}"
+                                                       th:text="${child1.getText()}"
+                                                    ></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="mega-menu__item">
+                                        <div>
+                                            <ul>
+                                                <li th:each="child2 : ${menuItemMG.getChildren().get(2).getChildren()}">
+                                                    <a th:href="${child2.getLink()}"
+                                                       th:text="${child2.getText()}"
+                                                       th:class="${#strings.equals(child2.getDescClass(), 'link-upper')} ? link__upper : ''">
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="mega-menu__item"><a class="link__upper" href="">BỘ SƯU TẬP</a>
+                                        <div>
+                                            <ul>
+                                                <li th:each="child3 : ${menuItemMG.getChildren().get(3).getChildren()}">
+                                                    <a th:href="${child3.getLink()}"
+                                                       th:text="${child3.getText()}">
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </th:block>
+
+                    </ul>
+                    <div class="navbar-right relative js-navbar-right">
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                        </form>
+                        <div class="navbar-cart__icon">
+                            <a href="">
+                                    <span><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</th:block>
+</body>
+</html>
