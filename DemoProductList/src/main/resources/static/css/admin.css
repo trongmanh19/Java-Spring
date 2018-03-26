@@ -1,0 +1,25 @@
+#preview-product-img {
+    max-width: 200px;
+    max-height: 200px;
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.img-select-block {
+    position: relative;
+}
+
+#input-select-img-product {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}

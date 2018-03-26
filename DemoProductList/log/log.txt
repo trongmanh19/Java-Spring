@@ -1,0 +1,17 @@
+2018-Mar-26 19:01:11 PM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-26 19:01:11 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-26 19:02:15 PM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-26 19:02:15 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-26 19:04:31 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-26 19:04:37 PM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-26 19:04:37 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-26 19:05:15 PM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-26 19:05:15 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 01:37:16 AM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 01:37:17 AM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 01:40:57 AM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 01:40:57 AM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 01:43:05 AM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 01:43:05 AM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 01:48:58 AM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 01:48:58 AM [restartedMain] DEBUG application.Application - Start main ---------------- 
