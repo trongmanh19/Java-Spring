@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -46,6 +47,59 @@
                 <a th:href="@{/}" class="btn btn-primary">Back to index</a>
             </p>
         </section>
+    </div>
+
+    <div class="container">
+        <table id="cart" class="table table-hover table-condensed">
+            <thead>
+            <tr>
+                <th style="width:50%">Tên sản phẩm</th>
+                <th style="width:10%">Giá</th>
+                <th style="width:8%">Số lượng</th>
+                <th style="width:22%" class="text-center">Thành tiền</th>
+                <th style="width:10%"> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${vm.getListPagingProducts()}">
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-sm-2 hidden-xs">
+                            <a th:href="@{'product/detail/' + ${product.getId()}}"><img th:src="${product.getImage()}" alt="Sản phẩm 1" class="img-responsive" width="100"></a>
+                        </div>
+                        <div class="col-sm-10">
+                            <h4 class="nomargin"><span th:text="${product.getName()}"></span></h4>
+                            <p><span th:text="${product.getShortDesc()}"></span></p>
+                            <p class="product-id-numb" th:text="${product.getId()}"></p>
+                        </div>
+                    </div>
+                </td>
+                <td data-th="Price">200.000 đ</td>
+                <td data-th="Quantity">
+                    <input class="form-control text-center" value="1" type="number">
+                </td>
+                <td data-th="Subtotal" class="text-center">200.000 đ</td>
+                <td class="actions" data-th="">
+                    <button class="btn btn-info btn-sm btn-edit-product" th:attr="data-product=${product.getId()}"><i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm btn-delete-product" th:attr="data-product=${product.getId()}"><i class="fa fa-trash-o"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        <ul class="pagination">
+            <th:block th:each="indexPage : ${#numbers.sequence(1, vm.getTotalPagingItems(), 1)}">
+                <li class="active" th:if="${indexPage == vm.getCurrentPage()}">
+                    <a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                </li>
+                <li th:unless="${indexPage == vm.getCurrentPage()}">
+                    <a th:href="@{'/admin?pageNumber=' + ${indexPage}}"><span th:text="${indexPage}"></span></a>
+                </li>
+            </th:block>
+        </ul>
     </div>
 
     <div class="container text-center">

@@ -1,8 +1,10 @@
 package application.controller.web;
 
+import application.constant.Constant;
 import application.data.model.PaginableItemList;
 import application.data.model.Product;
 import application.data.service.ProductService;
+import application.viewmodel.admin.AdminVM;
 import application.viewmodel.common.ProductVM;
 import application.viewmodel.homelanding.BannerVM;
 import application.viewmodel.homelanding.HomeLandingVM;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hoangmanh on 3/26/18.
@@ -30,9 +33,45 @@ public class HomeController extends BaseController {
 
     @GetMapping(path = "admin")
 //    @RequestMapping(path = "admin", method = RequestMethod.GET)
-    public String admin(Model model) {
+
+    public String admin(Model model, @RequestParam(value="pageNumber", required=false)
+                                Integer pageNumber) {
+        int pageSize = Constant.DEFAULT_PAGE_SIZE;
+
+        AdminVM vm = new AdminVM();
+
         long totalProducts = productService.getTotalProducts();
-        model.addAttribute("message", "Total existed products: " + totalProducts);
+        vm.setMessageTotalProducts("Total existed products: " + totalProducts);
+
+        if (pageNumber == null) {
+            pageNumber = 1;
+        }
+
+        try {
+            PaginableItemList<Product> paginableItemList = productService.getListProducts(Constant.DEFAULT_PAGE_SIZE, pageNumber - 1);
+            List<Product> productList = paginableItemList.getListData();
+            ArrayList<ProductVM> listProductVMs = new ArrayList<>();
+            ModelMapper modelMapper = new ModelMapper();
+            for (Product product : productList) {
+                ProductVM productVM = modelMapper.map(product, ProductVM.class);
+                listProductVMs.add(productVM);
+            }
+            vm.setListPagingProducts(listProductVMs);
+            int totalPages = 0;
+            if(paginableItemList.getTotalProducts() % pageSize == 0) {
+                totalPages = (int)(paginableItemList.getTotalProducts() / pageSize);
+            } else {
+                totalPages = (int)(paginableItemList.getTotalProducts() / pageSize) + 1;
+            }
+
+            vm.setTotalPagingItems(totalPages);
+            vm.setCurrentPage(pageNumber);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("vm", vm);
+
         return "admin";
     }
 
