@@ -15,3 +15,5 @@
 2018-Mar-27 01:43:05 AM [restartedMain] DEBUG application.Application - Start main ---------------- 
 2018-Mar-27 01:48:58 AM [main] DEBUG application.Application - Start main ---------------- 
 2018-Mar-27 01:48:58 AM [restartedMain] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 16:30:18 PM [main] DEBUG application.Application - Start main ---------------- 
+2018-Mar-27 16:30:18 PM [restartedMain] DEBUG application.Application - Start main ---------------- 
