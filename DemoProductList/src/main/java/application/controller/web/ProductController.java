@@ -5,6 +5,7 @@ import application.data.service.ProductService;
 import application.model.ProductDetailModel;
 import application.viewmodel.productindex.ProductIndexVM;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +21,11 @@ import org.springframework.web.client.HttpClientErrorException;
 @RequestMapping(path="/product")
 public class ProductController extends BaseController {
 
+    @Autowired
     private ProductService productService;
 
     @GetMapping("/detail/{productId}")
-    public String index(Model model, @PathVariable int productId ) {
+    public String index(Model model, @PathVariable int productId) {
 
         ProductIndexVM vm = new ProductIndexVM();
 

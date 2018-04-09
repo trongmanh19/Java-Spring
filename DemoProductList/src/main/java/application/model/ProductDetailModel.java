@@ -16,6 +16,8 @@ public class ProductDetailModel {
     @JsonSerialize(using = CustomDateSerializer.class)
     private Date createdDate;
 
+    private CategoryDataModel category;
+
     public int getId() {
         return id;
     }
@@ -54,5 +56,13 @@ public class ProductDetailModel {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public CategoryDataModel getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryDataModel category) {
+        this.category = category;
     }
 }

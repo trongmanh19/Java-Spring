@@ -39,17 +39,22 @@ $(document).ready(function () {
     $('#datepicker-created-date-product').datetimepicker();
 
     $(".btn-save-product").on("click", function () {
-        // if($("#input-product-name").val() === "" || $("#input-product-desc").val() === "" || dataProduct.image === undefined) {
-        //     swal(
-        //         'Error',
-        //         'You need to fill all values',
-        //         'error'
-        //     );
-        //     return;
-        // }
+        if($("#input-product-name").val() === "" || $("#input-product-desc").val() === "" || dataProduct.image === undefined) {
+            swal(
+                'Error',
+                'You need to fill all values',
+                'error'
+            );
+            return;
+        }
         dataProduct.name = $('#input-product-name').val();
         dataProduct.shortDesc = $('#input-product-desc').val();
-        dataProduct.createdDate = $("#datepicker-created-date-product").data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss");
+        var createdDate = null;
+        // if($("#datepicker-created-date-product").data("DateTimePicker").date()) {
+            createdDate = $("#datepicker-created-date-product").data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss");
+        // }
+        dataProduct.createdDate = createdDate;
+        console.log(dataProduct);
         NProgress.start();
         var linkPost = "/api/product/create-product";
         if(dataProduct.id) {

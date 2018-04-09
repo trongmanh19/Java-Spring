@@ -1,5 +1,7 @@
 package application.viewmodel.common;
 
+import application.model.CategoryDataModel;
+
 /**
  * Created by hoangmanh on 3/26/18.
  */
@@ -9,8 +11,18 @@ public class ProductVM {
     private String image;
     private String shortDesc;
 
+    private CategoryDataModel category;
+
     public int getId() {
         return id;
+    }
+
+    public CategoryDataModel getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryDataModel category) {
+        this.category = category;
     }
 
     public void setId(int id) {
